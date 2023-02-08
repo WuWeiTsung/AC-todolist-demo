@@ -13,5 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
+  "devDependencies": {
+    "dotenv": "^16.0.3"
   }
 }
