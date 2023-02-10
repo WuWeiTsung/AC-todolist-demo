@@ -9,7 +9,7 @@ require('./config/mongoose')
 
 const app = express()
 //port setting
-const port = 3000
+const PORT = process.env.PORT || 3000
 
 
 //view engine settings(express-handlebars)
@@ -23,6 +23,6 @@ app.use(methodOverride('_method'))
 //router settings
 app.use(routes)
 
-app.listen(port, () => {
-    console.log(`app is running on http://localhost:${port}`)
+app.listen(PORT, () => {
+    console.log(`app is running on http://localhost:${PORT}`)
 })
