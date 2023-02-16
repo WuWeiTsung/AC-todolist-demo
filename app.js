@@ -7,6 +7,7 @@ const flash = require('connect-flash')
 
 const routes = require('./routes/index')
 require('./config/mongoose')
+require('dotenv').config()
 const UsePassport = require('./config/passport')
 
 const app = express()
@@ -19,7 +20,7 @@ app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs' }))
 app.set(`view engine`, 'hbs')
 //express-session settings
 app.use(session({
-    secret: 'ThisIsMySecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }))
