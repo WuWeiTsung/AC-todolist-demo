@@ -7,6 +7,7 @@ const session = require('express-session')
 
 const routes = require('./routes/index')
 require('./config/mongoose')
+const UsePassport = require('./config/passport')
 
 const app = express()
 //port setting
@@ -27,6 +28,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 //methodOverride settings
 app.use(methodOverride('_method'))
 
+//passport use
+UsePassport(app)
 //router settings
 app.use(routes)
 
