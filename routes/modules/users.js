@@ -10,7 +10,7 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/user/login'
+    failureRedirect: '/users/login'
 }))
 
 router.get('/register', (req, res) => {
@@ -31,6 +31,12 @@ router.post('/register', (req, res) => {
                 .then(() => res.redirect('/'))
                 .catch(error => console.log(error))
         }
+    }).catch(error => console.log(error))
+})
+
+router.get('/logout', (req, res) => {
+    req.logout(() => {
+        res.redirect('/users/login')
     }).catch(error => console.log(error))
 })
 
