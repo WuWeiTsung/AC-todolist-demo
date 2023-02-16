@@ -3,7 +3,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
-
+const flash = require('connect-flash')
 
 const routes = require('./routes/index')
 require('./config/mongoose')
@@ -27,13 +27,16 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }))
 //methodOverride settings
 app.use(methodOverride('_method'))
-
 //passport use
 UsePassport(app)
+//use connect-flash
+app.use(flash())
 //res.locals setting
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.isAuthenticated()
     res.locals.user = req.user
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.warning_msg = req.flash('warning_msg')
     next()
 })
 //router settings
